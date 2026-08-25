@@ -69,13 +69,13 @@ def create_book(book: Book):
 @app.put("/books/{book_id}")
 def update_book(book_id: int, updated_book: Book):
     for index, book in enumerate(books):
-        if book.id == book_id:
+        if book.id == book_id and updated_book.id == book_id:
             books[index] = updated_book
             return updated_book
 
     raise HTTPException(
         status_code=404,
-        detail="Book not found"
+        detail="Book not found or book ID mismatch"
     )
 
 
